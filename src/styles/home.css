@@ -1,0 +1,6 @@
+.visible-scrollbar,
+.invisible-scrollbar {
+  display: inline;
+  width: 100%;
+  overflow: auto;
+}

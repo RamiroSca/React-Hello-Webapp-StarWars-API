@@ -16,21 +16,25 @@ export const Home = function () {
 		
 	}, [])
 
-	return (<div className="text-center mt-5">
-		<div className="container" data-bs-spy="scroll">
-			<div className="row justify-content-center" data-bs-spy="scroll" style={{flexWrap: "nowrap"}}>
+	return (
+	<div className="text-center mt-2">
+		<div className="container mb-4">
+			<h3 className="d-flex flex-row">Personajes</h3>
+			<div className="row visible-scrollbar d-flex" style={{flexWrap: "nowrap"}}>
 			{store.personajes.map((item)=><Card key={item.uid} uid={item.uid} name={item.name}/>)}
 			</div>
 		</div>
-		<div>
-			<ul>
-				{store.planetas.map((item) => <li key={item.uid}>{item.name}</li>)}
-			</ul>
+		<div className="container mb-4">
+			<h3 className="d-flex flex-row">Planetas</h3>
+			<div className="row visible-scrollbar d-flex" style={{flexWrap: "nowrap"}}>
+			{store.planetas.map((item)=><Card key={item.uid} uid={item.uid} name={item.name}/>)}
+			</div>
 		</div>
-		<div>
-			<ul>
-				{store.vehiculos.map((item) => <li key={item.uid}>{item.name}</li>)}
-			</ul>
+		<div className="container mb-4">
+			<h3 className="d-flex flex-row">Vehiculos</h3>
+			<div className="row visible-scrollbar d-flex" style={{flexWrap: "nowrap"}}>
+			{store.vehiculos.map((item)=><Card key={item.uid} uid={item.uid} name={item.name}/>)}
+			</div>
 		</div>
 	</div>
 	)

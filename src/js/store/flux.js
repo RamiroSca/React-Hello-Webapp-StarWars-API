@@ -15,32 +15,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			personajes:[],
 			planetas:[],
-			vehiculos:[]
+			vehiculos:[],
+			favoritos:[],
+			// background:""
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			},
 			getPersonajes: function () {
 				fetch("https://www.swapi.tech/api/people")
 					.then(res => res.json())
@@ -67,6 +46,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore({vehiculos:data.results})
 					})
 					.catch(err => console.error(err))
+			},
+			addFav: function (name,uid,background) {
+				let listadeFav = getStore().favoritos;
+				let nuevoFav = {
+					name: name,
+					uid: uid
+				}
+				let nuevaListaDeFav = listadeFav.concat(nuevoFav) 
+				setStore({favoritos : nuevaListaDeFav})
+			},
+			removeFav: function (uid) {
+				let listadeFav = getStore().favoritos;
+				let nuevaListaDeFav = listadeFav.filter((item)=> uid !== item.uid )
+				setStore({favoritos : nuevaListaDeFav})
 			}
 		}
 	};
