@@ -16,6 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			personajes:[],
 			planetas:[],
 			vehiculos:[],
+			masInfo:[],
 			favoritos:[],
 			// background:""
 		},
@@ -44,6 +45,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data =>{
 						console.log(data);
 						setStore({vehiculos:data.results})
+					})
+					.catch(err => console.error(err))
+			},
+			getMasInfo: function (categorias,uid) {
+				fetch(`https://www.swapi.tech/api/${categorias}/${uid}`)
+					.then(res => res.json())
+					.then(data =>{
+						// console.log(data);
+						setStore({masInfo:data.result})
 					})
 					.catch(err => console.error(err))
 			},
