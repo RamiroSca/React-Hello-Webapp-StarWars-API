@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
@@ -8,28 +8,25 @@ export const Card = (props) => {
 
 
 
-    function favoritos() {
-        if (background == "bg-danger text-white") {
-            setbackground("")
-            //llamar a la funcion removeFav
-            actions.removeFav(props.uid)
-        } else {
-            setbackground("bg-danger text-white")
-            //llamar a la funcion addFav
-            actions.addFav(props.name, props.uid)
-        }
+    // function favoritos() {
+    //     let favNames = store.favoritos.map((item)=>item.name)
 
-        // for (let index = 0; index < store.favoritos.length; index++) {
-        //     const favoritosIndividual = store.favoritos[index];
-        //     if (favoritosIndividual.uip == props.uip) {
-        //         console.log(favoritosIndividual);
-        //         setbackground("bg-danger text-white")
-        //     } else {
-        //         console.log(favoritosIndividual);
-        //         setbackground("")
-        //     }
-        // }
-    }
+    //    if (store.favoritos.length == 0) {
+    //     actions.addFav(props.name, props.uid)
+    //    } else {
+    //     if (favNames.includes(props.name)) {
+    //         actions.removeFav(props.uid)
+    //     } else {
+    //         actions.addFav(props.name, props.uid)
+    //     }
+    //    }
+       
+    // }
+   
+
+    useEffect(()=>{
+       
+    },[])
 
 
 
@@ -43,7 +40,7 @@ export const Card = (props) => {
                     <Link to={`/demo/${props.categoria}/${props.uid}`}>
                         <a href="#" className="btn btn-primary">Go somewhere</a>
                     </Link>
-                    <button class={"btn btn-outline-danger " + background} onClick={favoritos}>♡</button>
+                    <button class={"btn btn-outline-danger " } onClick={()=>{actions.favoritos(props.name,props.uid)}}>♡</button>
                 </div>
             </div>
         </div>

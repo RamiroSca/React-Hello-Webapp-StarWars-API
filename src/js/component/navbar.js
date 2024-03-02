@@ -25,7 +25,10 @@ export const Navbar = () => {
 					{store.favoritos.map((item)=>(
 					<li key={item.uid} className="d-flex justify-content-between">
 						{item.name}
-						<button onClick={() => actions.removeFav(item.uid)} className="btn btn-danger p-0 text-white px-1">X</button>
+						<button onClick={() => {
+							actions.removeFav(item.uid);
+							actions.TaskFavNavBar(item.name);}} 
+							className="btn btn-danger p-0 text-white px-1">X</button>
 					</li>))}
 				</ul>
 			</div>
