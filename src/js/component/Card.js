@@ -7,9 +7,6 @@ export const Card = (props) => {
     const { store, actions } = useContext(Context)
 
 
-
-
-
     return (
         <div key={props.uid} className="card  p-1" style={{ width: "18rem" }}>
             <img src="https://depor.com/resizer/t_XnEOGRLM91FlZa7TitLM4sdPs=/400x0/smart/filters:format(jpeg):quality(75)/arc-anglerfish-arc2-prod-elcomercio.s3.amazonaws.com/public/HKYWPKEQBJB6NMXZ2M372JK7PA.jpg" className="card-img-top" alt="..." />

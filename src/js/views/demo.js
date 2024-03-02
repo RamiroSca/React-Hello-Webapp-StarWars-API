@@ -9,21 +9,49 @@ export const Demo = () => {
 	const { store, actions } = useContext(Context);
 	const params = useParams()
 	const direcProp = store.masInfo.properties
+	const [div2 , setDiv2]= useState({
+		name:"Birth Year",
+		info: direcProp?.birth_year
+	})
+	const [div3 , setDiv3]= useState({
+		name:"Gender",
+		info:direcProp?.gender
+	})
+	const [div4 , setDiv4]= useState({
+		name:"Height",
+		info:direcProp?.height
+	})
+	const [div5 , setDiv5]= useState({
+		name:"Skin Color",
+		info:direcProp?.skin_color
+	})
+	const [div6 , setDiv6]= useState({
+		name:"Eye Color",
+		info:direcProp?.eye_color
+	})
 
 
-	// function categorias() {
-	// 	if (params.categorias=="planet") {
-	// 		
-	// 	} else if (params.categorias=="people"){
-	// 		
-	// 	} else {
-	// 		
-	// 	}
-	// }
+	function categorias() {
+		if (params.categorias=="planets") {
+			setDiv2({name: "Gravity" ,info: direcProp?.gravity})
+			setDiv3({name: "Diamer" ,info: direcProp?.diamer})
+			setDiv4({name: "Climate" ,info: direcProp?.climate})
+			setDiv5({name: "Population" ,info: direcProp?.population})
+			setDiv6({name: "Terrain" ,info: direcProp?.terrain})
+		} else if (params.categorias=="vehicles"){
+			setDiv2({name: "Model" ,info: direcProp?.model})
+			setDiv3({name: "Vehicle Class" ,info: direcProp?.vehicle_class})
+			setDiv4({name: "Passengers" ,info: direcProp?.passengers})
+			setDiv5({name: "Length" ,info: direcProp?.length})
+			setDiv6({name: "Consumables" ,info: direcProp?.consumables})
+		} else {
+		}
+	}
 
 
 	useEffect(() => {
 		actions.getMasInfo(params.categorias, params.uid)
+		categorias()
 	})
 	// console.log(store.masInfo);
 	return (
@@ -44,24 +72,24 @@ export const Demo = () => {
 					<p>{direcProp?.name}</p>
 				</div>
 				<div>
-					<h6>Birth Year</h6>
-					<p>{direcProp?.birth_year}</p>
+					<h6>{div2.name}</h6>
+					<p>{div2.info}</p>
 				</div>
 				<div>
-					<h6>Gender</h6>
-					<p>{direcProp?.gender}</p>
+					<h6>{div3.name}</h6>
+					<p>{div3.info}</p>
 				</div>
 				<div>
-					<h6>Heigth</h6>
-					<p>{direcProp?.height}</p>
+					<h6>{div4.name}</h6>
+					<p>{div4.info}</p>
 				</div>
 				<div>
-					<h6>Skin Color</h6>
-					<p>{direcProp?.skin_color}</p>
+					<h6>{div5.name}</h6>
+					<p>{div5.info}</p>
 				</div>
 				<div>
-					<h6>Eye Color</h6>
-					<p>{direcProp?.eye_color}</p>
+					<h6>{div6.name}</h6>
+					<p>{div6.info}</p>
 				</div>
 			</div>
 
