@@ -12,11 +12,6 @@ export const Navbar = () => {
 			<Link to="/">
 				<span className="navbar-brand mb-0 h1"><img src="https://i.pinimg.com/originals/b4/b5/fd/b4b5fdf7bf06601ad4bd1cc6f73acff3.png" style={{ width: "75px", height: "75px" }} /></span>
 			</Link>
-			{/* <div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn btn-primary">Check the Context in action</button>
-				</Link>
-			</div> */}
 			<div className="btn-group" role="group">
 				<button id="btnGroupDrop1" type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 				<strong>Favoritos {store.favoritos.length}</strong>
@@ -26,8 +21,7 @@ export const Navbar = () => {
 					<li key={index} className="d-flex justify-content-between">
 						{item}
 						<button onClick={() => {
-							actions.removeFav(item);
-							actions.TaskFavNavBar(item);}} 
+							actions.removeFav(item);}} 
 							className="btn btn-danger p-0 text-white px-1">X</button>
 					</li>))}
 				</ul>

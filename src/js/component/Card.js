@@ -8,10 +8,6 @@ export const Card = (props) => {
 
 
 
-    useEffect(()=>{
-       
-    },[])
-
 
 
     return (
@@ -24,7 +20,7 @@ export const Card = (props) => {
                     <Link to={`/demo/${props.categoria}/${props.uid}`}>
                         <a href="#" className="btn btn-primary">Go somewhere</a>
                     </Link>
-                    <button class={"btn btn-outline-danger " + store.favoritos.includes(props.name)? "bg-danger text-white":"" } onClick={()=>{actions.favoritos(props.name,props.uid)}}>♡</button>
+                    <button class={store.favoritos.includes(props.name)? "btn btn-danger":"btn btn-outline-danger"} onClick={()=>{actions.favoritos(props.name,props.uid)}}>♡</button>
                 </div>
             </div>
         </div>
