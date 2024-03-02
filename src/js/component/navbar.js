@@ -22,12 +22,12 @@ export const Navbar = () => {
 				<strong>Favoritos {store.favoritos.length}</strong>
 				</button>
 				<ul className="dropdown-menu" aria-labelledby="btnGroupDrop1">
-					{store.favoritos.map((item)=>(
-					<li key={item.uid} className="d-flex justify-content-between">
-						{item.name}
+					{store.favoritos.map((item,index)=>(
+					<li key={index} className="d-flex justify-content-between">
+						{item}
 						<button onClick={() => {
-							actions.removeFav(item.uid);
-							actions.TaskFavNavBar(item.name);}} 
+							actions.removeFav(item);
+							actions.TaskFavNavBar(item);}} 
 							className="btn btn-danger p-0 text-white px-1">X</button>
 					</li>))}
 				</ul>

@@ -57,31 +57,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(err => console.error(err))
 			},
-			addFav: function (name, uid) {
+			addFav: function (name) {
 				let listadeFav = getStore().favoritos;
-				let nuevoFav = {
-					name: name,
-					uid: uid,
-					background: "bg-danger text-white"
-				}
+				let nuevoFav = name
 				let nuevaListaDeFav = listadeFav.concat(nuevoFav)
 				setStore({ favoritos: nuevaListaDeFav })
 			},
-			removeFav: function (uid) {
+			removeFav: function (name) {
 				let listadeFav = getStore().favoritos;
-				let nuevaListaDeFav = listadeFav.filter((item) => uid !== item.uid)
+				let nuevaListaDeFav = listadeFav.filter((item) => name !== item)
 				setStore({ favoritos: nuevaListaDeFav })
 			},
-			favoritos: function (name,uid) {
-				let favNames = getStore().favoritos.map((item)=>item.name)
+			favoritos: function (name) {
+				let favNames = getStore().favoritos
 		
 			   if (getStore().favoritos.length == 0) {
-				getActions().addFav(name, uid)
+				getActions().addFav(name)
 			   } else {
 				if (favNames.includes(name)) {
-					getActions().removeFav(uid)
+					getActions().removeFav(name)
 				} else {
-					getActions().addFav(name, uid)
+					getActions().addFav(name)
 				}
 			   }
 			   

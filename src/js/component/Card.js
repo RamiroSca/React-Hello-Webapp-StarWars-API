@@ -8,22 +8,6 @@ export const Card = (props) => {
 
 
 
-    // function favoritos() {
-    //     let favNames = store.favoritos.map((item)=>item.name)
-
-    //    if (store.favoritos.length == 0) {
-    //     actions.addFav(props.name, props.uid)
-    //    } else {
-    //     if (favNames.includes(props.name)) {
-    //         actions.removeFav(props.uid)
-    //     } else {
-    //         actions.addFav(props.name, props.uid)
-    //     }
-    //    }
-       
-    // }
-   
-
     useEffect(()=>{
        
     },[])
@@ -40,7 +24,7 @@ export const Card = (props) => {
                     <Link to={`/demo/${props.categoria}/${props.uid}`}>
                         <a href="#" className="btn btn-primary">Go somewhere</a>
                     </Link>
-                    <button class={"btn btn-outline-danger " } onClick={()=>{actions.favoritos(props.name,props.uid)}}>♡</button>
+                    <button class={"btn btn-outline-danger " + store.favoritos.includes(props.name)? "bg-danger text-white":"" } onClick={()=>{actions.favoritos(props.name,props.uid)}}>♡</button>
                 </div>
             </div>
         </div>
