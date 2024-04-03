@@ -81,6 +81,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			   }
 			   
+			},
+			postLogin: function(nombreDeUsuario, contraseña) {
+				fetch (`https://silver-yodel-6994v4gjp46j2jpr-3000.app.github.dev/login`,{
+					method: 'POST',
+					headers:{
+						'Content-Type':'application/json'
+					},
+					body: JSON.stringify({
+						"nombre_de_usuario":nombreDeUsuario,
+						"contraseña":contraseña
+			   })
+				})
+					.then(res => res.json())
+					.then(data => {
+						// console.log(data);
+						setStore({ masInfo: data.result })
+					})
+					.catch(err => console.error(err))
 			}
 
 		}
