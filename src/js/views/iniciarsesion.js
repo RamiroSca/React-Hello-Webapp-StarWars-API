@@ -11,8 +11,11 @@ export const Iniciar_sesion = props => {
 
     function post_iniciar_sesion(e) {
         e.preventDefault();
+        actions.postLogin(email,contraseña)
         console.log(email);
         console.log(contraseña);
+        setEmail("")
+        setContraseña("")
     }
 
     return (

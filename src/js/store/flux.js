@@ -83,7 +83,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			   
 			},
 			postLogin: function(nombreDeUsuario, contraseña) {
-				fetch (`https://silver-yodel-6994v4gjp46j2jpr-3000.app.github.dev/login`,{
+				console.log(nombreDeUsuario,contraseña);
+				fetch (`https://humble-space-orbit-4jjwqw7xr9w4f7j6w-3000.app.github.dev/login`,{
 					method: 'POST',
 					headers:{
 						'Content-Type':'application/json'
@@ -91,12 +92,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify({
 						"nombre_de_usuario":nombreDeUsuario,
 						"contraseña":contraseña
-			   })
+					})
 				})
 					.then(res => res.json())
 					.then(data => {
-						// console.log(data);
-						setStore({ masInfo: data.result })
+						console.log(data);
+						localStorage.setItem("access_token", data.access_token);
 					})
 					.catch(err => console.error(err))
 			}
