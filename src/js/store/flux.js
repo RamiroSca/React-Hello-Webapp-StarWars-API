@@ -19,6 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			masInfo: [],
 			favoritos: [],
 			background: "",
+			validacion: false
 		},
 		actions: {
 			getPersonajes: function () {
@@ -70,34 +71,106 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			favoritos: function (name) {
 				let favNames = getStore().favoritos
-		
-			   if (getStore().favoritos.length == 0) {
-				getActions().addFav(name)
-			   } else {
-				if (favNames.includes(name)) {
-					getActions().removeFav(name)
-				} else {
+
+				if (getStore().favoritos.length == 0) {
 					getActions().addFav(name)
+				} else {
+					if (favNames.includes(name)) {
+						getActions().removeFav(name)
+					} else {
+						getActions().addFav(name)
+					}
 				}
-			   }
-			   
+
 			},
-			postLogin: function(nombreDeUsuario, contraseña) {
-				console.log(nombreDeUsuario,contraseña);
-				fetch (`https://humble-space-orbit-4jjwqw7xr9w4f7j6w-3000.app.github.dev/login`,{
+			postLogin: function (nombreDeUsuario, contraseña) {
+				console.log(nombreDeUsuario, contraseña);
+				fetch(`https://humble-space-orbit-4jjwqw7xr9w4f7j6w-3000.app.github.dev/login`, {
 					method: 'POST',
-					headers:{
-						'Content-Type':'application/json'
+					headers: {
+						'Content-Type': 'application/json'
 					},
 					body: JSON.stringify({
-						"nombre_de_usuario":nombreDeUsuario,
-						"contraseña":contraseña
+						"nombre_de_usuario": nombreDeUsuario,
+						"contraseña": contraseña
 					})
 				})
 					.then(res => res.json())
 					.then(data => {
 						console.log(data);
 						localStorage.setItem("access_token", data.access_token);
+						setStore({ validacion: true })
+					})
+					.catch(err => console.error(err))
+			},
+			postSignup: function (nombre, apellido, nombreDeUsuario, contraseña, email, edad, dni) {
+				console.log(nombre, apellido, nombreDeUsuario, contraseña, email, edad, dni);
+				fetch(`https://humble-space-orbit-4jjwqw7xr9w4f7j6w-3000.app.github.dev/signup`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						"nombre": nombre,
+						"apellido": apellido,
+						"nombre_de_usuario": nombreDeUsuario,
+						"contraseña": contraseña,
+						"email": email,
+						"edad": edad,
+						"DNI": dni
+					})
+				})
+					.then(res => res.json())
+					.then(data => {
+						console.log(data);
+						localStorage.setItem("access_token", data.access_token);
+						setStore({ validacion: true })
+					})
+					.catch(err => console.error(err))
+			},
+			validToken: function () {
+				fetch(`https://humble-space-orbit-4jjwqw7xr9w4f7j6w-3000.app.github.dev/valid-token`, {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': 'Bearer ' + localStorage.getItem("access_token")
+					}
+				})
+					.then(res => {
+						res.json()
+						if (res.status == 200) { setStore({ validacion: true }) };
+					})
+					.then(data => {
+						console.log(data);
+					})
+					.catch(err => console.error(err))
+			},
+			allFavoritosUsuario: function (usuarioID) {
+				console.log(usuarioID);
+				fetch(`https://humble-space-orbit-4jjwqw7xr9w4f7j6w-3000.app.github.dev/usuario/favoritos/`+usuarioID)
+					.then(res => res.json())
+					.then(data => {
+						console.log(data);
+					})
+					.catch(err => console.error(err))
+			},
+			addFavoritos: function (personasID, planetasID, vehiculosID, usuarioID) {
+				console.log(personasID, planetasID, vehiculosID, usuarioID);
+				fetch(`https://humble-space-orbit-4jjwqw7xr9w4f7j6w-3000.app.github.dev/usuario/favoritos`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						"personas_id": personasID,
+						"planetas_id": planetasID,
+						"vehiculos_id": vehiculosID,
+						"usuario_id": usuarioID
+					})
+				})
+					.then(res => res.json())
+					.then(data => {
+						console.log(data);
 					})
 					.catch(err => console.error(err))
 			}

@@ -6,15 +6,15 @@ import { Context } from "../store/appContext";
 export const Iniciar_sesion = props => {
     const { store, actions } = useContext(Context);
     const params = useParams();
-    const [email, setEmail] = useState("");
+    const [nombreDeUsuario, setNombreDeUsuario] = useState("");
     const [contraseña, setContraseña] = useState("");
 
     function post_iniciar_sesion(e) {
         e.preventDefault();
-        actions.postLogin(email,contraseña)
-        console.log(email);
+        actions.postLogin(nombreDeUsuario,contraseña)
+        console.log(nombreDeUsuario);
         console.log(contraseña);
-        setEmail("")
+        setNombreDeUsuario("")
         setContraseña("")
     }
 
@@ -22,9 +22,9 @@ export const Iniciar_sesion = props => {
         <div className="jumbotron">
             <form onSubmit={post_iniciar_sesion}>
             <div className="mb-3 row">
-                <label for="staticEmail" className="col-sm-2 col-form-label">Email</label>
+                <label for="staticEmail" className="col-sm-2 col-form-label">Nombre de Usuario</label>
                 <div className="col-sm-10">
-                    <input type="text" className="form-control" id="staticEmail" placeholder="email@example.com" onChange={event => setEmail(event.target.value)} />
+                    <input type="text" className="form-control" id="staticEmail" onChange={event => setNombreDeUsuario(event.target.value)} />
                 </div>
             </div>
             <div className="mb-3 row">

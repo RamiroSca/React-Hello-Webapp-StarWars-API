@@ -6,6 +6,12 @@ export const Navbar = () => {
 	const { store, actions } = useContext(Context)
 
 
+	function eliminarToken(){
+		console.log("hola");
+		localStorage.removeItem("access_token")
+	}
+
+
 
 	return (
 		<nav className="container navbar navbar-light bg-white mb-3">
@@ -20,7 +26,7 @@ export const Navbar = () => {
 					<ul className="dropdown-menu" aria-labelledby="btnGroupDrop2">
 						<li key="1" className="d-flex justify-content-between"><button className="btn btn-primary m-1"><Link to="/iniciar_sesion" className="text-white">Iniciar Sesion</Link></button></li>
 						<li key="2" className="d-flex justify-content-between"><button className="btn btn-success m-1"><Link to="/registrarse" className="text-white">Registrarse</Link></button></li>
-						<li key="3" className="d-flex justify-content-between"><button className="btn btn-danger m-1"><Link to="/" className="text-white">Cerrar Sesion</Link></button></li>
+						{store.validacion ? <li key="3" className="d-flex justify-content-between"><Link to="/" className="text-white"><button className="btn btn-danger m-1" onClick={eliminarToken}>Cerrar Sesion</button></Link></li>: null}
 					</ul>
 				</div>
 				<div>
