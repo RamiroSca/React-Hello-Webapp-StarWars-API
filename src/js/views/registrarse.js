@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const Registrarse = props => {
+    const navigate = useNavigate();
     const { store, actions } = useContext(Context);
     const params = useParams();
     const [nombre, setNombre] = useState("");
@@ -18,13 +20,14 @@ export const Registrarse = props => {
     function postCrearUsuario (e) {
         e.preventDefault();
         actions.postSignup(nombre, apellido, nombreDeUsuario,contraseña, email, edad, dni)
+        navigate("/")
     }
 
 
 
 
     return (
-        <div className="jumbotron">
+        <div className="container">
             <form onSubmit={postCrearUsuario}>
             <div className="mb-3 row">
                 <label for="staticEmail" className="col-sm-2 col-form-label">Nombre</label>

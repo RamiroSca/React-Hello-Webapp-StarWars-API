@@ -6,8 +6,8 @@ export const Navbar = () => {
 	const { store, actions } = useContext(Context)
 
 
-	function eliminarToken(){
-		console.log("hola");
+	function eliminarToken() {
+		// console.log("hola");
 		localStorage.removeItem("access_token")
 	}
 
@@ -26,10 +26,10 @@ export const Navbar = () => {
 					<ul className="dropdown-menu" aria-labelledby="btnGroupDrop2">
 						<li key="1" className="d-flex justify-content-between"><button className="btn btn-primary m-1"><Link to="/iniciar_sesion" className="text-white">Iniciar Sesion</Link></button></li>
 						<li key="2" className="d-flex justify-content-between"><button className="btn btn-success m-1"><Link to="/registrarse" className="text-white">Registrarse</Link></button></li>
-						{store.validacion ? <li key="3" className="d-flex justify-content-between"><Link to="/" className="text-white"><button className="btn btn-danger m-1" onClick={eliminarToken}>Cerrar Sesion</button></Link></li>: null}
+						{store.validacion ? <li key="3" className="d-flex justify-content-between"><Link to="/" className="text-white"><button className="btn btn-danger m-1" onClick={eliminarToken}>Cerrar Sesion</button></Link></li> : null}
 					</ul>
 				</div>
-				<div>
+				{store.validacion ? <div>
 					<button id="btnGroupDrop1" type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 						<strong>Favoritos {store.favoritos.length}</strong>
 					</button>
@@ -43,7 +43,7 @@ export const Navbar = () => {
 									className="btn btn-danger p-0 text-white px-1">X</button>
 							</li>))}
 					</ul>
-				</div>
+				</div> : null}
 			</div>
 		</nav>
 	);

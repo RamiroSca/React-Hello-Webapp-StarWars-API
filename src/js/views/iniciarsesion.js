@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const Iniciar_sesion = props => {
+    const navigate = useNavigate();
     const { store, actions } = useContext(Context);
     const params = useParams();
     const [nombreDeUsuario, setNombreDeUsuario] = useState("");
@@ -16,10 +18,11 @@ export const Iniciar_sesion = props => {
         console.log(contraseña);
         setNombreDeUsuario("")
         setContraseña("")
+        navigate("/")
     }
 
     return (
-        <div className="jumbotron">
+        <div className="container">
             <form onSubmit={post_iniciar_sesion}>
             <div className="mb-3 row">
                 <label for="staticEmail" className="col-sm-2 col-form-label">Nombre de Usuario</label>
